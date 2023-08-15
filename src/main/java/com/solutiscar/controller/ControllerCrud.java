@@ -17,7 +17,7 @@ public abstract class ControllerCrud<T> {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<T> insert(@RequestBody T payload) {
-        return ResponseEntity.ok((T) service.insert(payload));
+    public ResponseEntity<T> insert(@RequestBody T obj) {
+        return ResponseEntity.ok((T) service.insert(obj));
     }
 }
