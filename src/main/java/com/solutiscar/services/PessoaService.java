@@ -24,23 +24,24 @@ public class PessoaService extends ServiceCrud<PessoaDTO>{
     private PessoaMapper pessoaMapper;
 
     @Override
+    public PessoaDTO obterPorId(Long id) {
+        return null;
+    }
+
+    @Override
+    public List<PessoaDTO> listarTodos() {
+        return null;
+    }
+
+    @Override
     public PessoaDTO insert(PessoaDTO dto) {
         Pessoa pessoaInsert = pessoaRepository.save(this.pessoaMapper.dtoToModel(dto));
         return this.pessoaMapper.modelToDTO(pessoaInsert);
     }
 
     @Override
-    PessoaDTO obterPorId(Long id) {
-        return null;
-    }
-
-    @Override
-    List<PessoaDTO> listarTodos() {
-        return null;
-    }
-
-    @Override
-    void excluirPorId(Long id) {
+    public void excluirPorId(Long id) {
 
     }
+
 }
