@@ -2,6 +2,7 @@ package com.solutiscar.services;
 
 
 import com.solutiscar.dto.PessoaDTO;
+import com.solutiscar.entities.Motorista;
 import com.solutiscar.entities.Pessoa;
 import com.solutiscar.repositories.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PessoaService {
 
     @Autowired
-    PessoaRepository pessoaRepository;
+    private PessoaRepository pessoaRepository;
 
     @Transactional
     public PessoaDTO insert(PessoaDTO dto) {
