@@ -1,37 +1,43 @@
 package com.solutiscar.services;
 
 
-import com.solutiscar.dto.PessoaDTO;
-import com.solutiscar.entities.Motorista;
-import com.solutiscar.entities.Pessoa;
+import com.solutiscar.mapper.PessoaMapper;
+import com.solutiscar.model.dto.PessoaDTO;
+import com.solutiscar.model.entities.Pessoa;
 import com.solutiscar.repositories.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
 
 @Service
-public class PessoaService {
+public class PessoaService extends ServiceCrud<PessoaDTO>{
 
     @Autowired
     private PessoaRepository pessoaRepository;
 
-    @Transactional
+    @Autowired
+    private PessoaMapper pessoaMapper;
+
+    @Override
     public PessoaDTO insert(PessoaDTO dto) {
-        Pessoa pessoa = new Pessoa();
-        pessoa.setNome(dto.getNome());
-        pessoa.setDate(dto.getDate());
-        pessoa.setCpf(dto.getCpf());
-
-        Pessoa pessoaSalva = pessoaRepository.save(pessoa);
-
-        return convertEntityToDto(pessoaSalva);
+        Pessoa pessoaInsert = pessoaRepository.save(this.pessoaMapper.dtoToModel(dto));
+        return this.pessoaMapper.modelToDTO(pessoaInsert);
     }
 
-    private PessoaDTO convertEntityToDto(Pessoa pessoa) {
-        PessoaDTO dto = new PessoaDTO();
-        dto.setNome(pessoa.getNome());
-        dto.setCpf(pessoa.getNome());
-        dto.setDate(pessoa.getDate());
-        return dto;
+    @Override
+    PessoaDTO obterPorId(Long id) {
+        return null;
+    }
+
+    @Override
+    List<PessoaDTO> listarTodos() {
+        return null;
+    }
+
+    @Override
+    void excluirPorId(Long id) {
+
     }
 }

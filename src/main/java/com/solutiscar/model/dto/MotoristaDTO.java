@@ -1,6 +1,6 @@
-package com.solutiscar.dto;
+package com.solutiscar.model.dto;
 
-import com.solutiscar.entities.Motorista;
+import com.solutiscar.model.entities.Motorista;
 
 public class MotoristaDTO extends PessoaDTO {
 

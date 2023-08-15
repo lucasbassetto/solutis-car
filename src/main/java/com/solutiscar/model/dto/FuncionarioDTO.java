@@ -1,7 +1,6 @@
-package com.solutiscar.dto;
+package com.solutiscar.model.dto;
 
-import com.solutiscar.entities.Funcionario;
-import com.solutiscar.entities.Pessoa;
+import com.solutiscar.model.entities.Funcionario;
 
 public class FuncionarioDTO extends PessoaDTO {
 

@@ -1,4 +1,4 @@
-package com.solutiscar.entities;
+package com.solutiscar.model.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

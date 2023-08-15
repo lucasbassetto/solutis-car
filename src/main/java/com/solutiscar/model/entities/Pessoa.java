@@ -1,13 +1,17 @@
-package com.solutiscar.dto;
+package com.solutiscar.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.solutiscar.entities.Pessoa;
-import org.springframework.beans.BeanUtils;
+import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.Objects;
 
-public class PessoaDTO {
+@Entity
+@Table(name = "tb_pessoa")
+public class Pessoa {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
 
@@ -15,12 +19,15 @@ public class PessoaDTO {
     private Instant date;
     private String cpf;
 
-    public PessoaDTO() {
 
+    public Pessoa() {
     }
 
-    public PessoaDTO(Pessoa entity) {
-        BeanUtils.copyProperties(entity, this);
+    public Pessoa(Long id, String nome, Instant date, String cpf) {
+        this.id = id;
+        this.nome = nome;
+        this.date = date;
+        this.cpf = cpf;
     }
 
     public Long getId() {
@@ -54,4 +61,18 @@ public class PessoaDTO {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pessoa pessoa = (Pessoa) o;
+        return id.equals(pessoa.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
 }
