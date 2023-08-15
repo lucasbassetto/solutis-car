@@ -1,6 +1,7 @@
 package com.solutiscar.model.dto;
 
 import com.solutiscar.model.entities.Funcionario;
+import org.springframework.beans.BeanUtils;
 
 public class FuncionarioDTO extends PessoaDTO {
 
@@ -10,7 +11,7 @@ public class FuncionarioDTO extends PessoaDTO {
     }
 
     public FuncionarioDTO(Funcionario entity) {
-        matricula = entity.getMatricula();
+        BeanUtils.copyProperties(entity, this);
     }
 
     public String getMatricula() {
