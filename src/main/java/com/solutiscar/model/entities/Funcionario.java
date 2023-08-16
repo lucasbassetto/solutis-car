@@ -14,6 +14,7 @@ public class Funcionario extends Pessoa {
     private String matricula;
 
     public Funcionario() {
+
     }
 
     public Funcionario(Long id, String nome, Instant date, String cpf, Sexo sexo, String matricula) {
