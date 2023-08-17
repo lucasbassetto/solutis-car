@@ -22,13 +22,14 @@ public class PessoaService extends ServiceCrud<PessoaDTO>{
     @Autowired
     private PessoaMapper pessoaMapper;
 
+
     @Override
-    public PessoaDTO obterPorId(Long id) {
+    public PessoaDTO findById(Long id) {
         return null;
     }
 
     @Override
-    public List<PessoaDTO> listarTodos() {
+    public List<PessoaDTO> listAll() {
         return null;
     }
 
@@ -39,7 +40,8 @@ public class PessoaService extends ServiceCrud<PessoaDTO>{
     }
 
     @Override
-    public void excluirPorId(Long id) {
-        System.out.println("oi");
+    public void deleteById(Long id) {
+
     }
+
 }

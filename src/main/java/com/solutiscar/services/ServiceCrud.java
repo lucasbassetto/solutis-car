@@ -4,11 +4,12 @@ import java.util.List;
 
 public abstract class ServiceCrud<T> {
 
-    public abstract T obterPorId(Long id);
+    public abstract T findById(Long id);
 
-    public abstract List<T> listarTodos();
+    public abstract List<T> listAll();
 
     public abstract T insert(T obj);
 
-    public abstract void excluirPorId(Long id);
+    public abstract void deleteById(Long id);
+
 }
