@@ -1,35 +1,35 @@
-version: '3.9'
-
-services:
-  dash-front:
-    container_name: dashboard-front
-    build: dashboard/.
-    ports:
-      - "8080:80"
-  dash:
-    image: 'dash:latest'
-    container_name: 'dash'
-    build: dash/.
-    ports:
-      - "8091:8091"
-    depends_on:
-      db-dash:
-        condition: service_healthy
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-dash:5432/postgres
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=password
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-  db-dash:
-    image: postgres
-    ports:
-      - "7777:5432"
-    environment:
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=postgres
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+#version: '3.9'
+#
+#services:
+#  dash-front:
+#    container_name: dashboard-front
+#    build: dashboard/.
+#    ports:
+#      - "8080:80"
+#  dash:
+#    image: 'dash:latest'
+#    container_name: 'dash'
+#    build: dash/.
+#    ports:
+#      - "8091:8091"
+#    depends_on:
+#      db-dash:
+#        condition: service_healthy
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-dash:5432/postgres
+#      - SPRING_DATASOURCE_USERNAME=postgres
+#      - SPRING_DATASOURCE_PASSWORD=password
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#  db-dash:
+#    image: postgres
+#    ports:
+#      - "7777:5432"
+#    environment:
+#      - POSTGRES_PASSWORD=password
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_DB=postgres
+#    healthcheck:
+#      test: ["CMD-SHELL", "pg_isready -U postgres"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5

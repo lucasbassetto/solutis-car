@@ -5,8 +5,6 @@ import com.solutiscar.mapper.PessoaMapper;
 import com.solutiscar.model.dto.PessoaDTO;
 import com.solutiscar.model.entities.Pessoa;
 import com.solutiscar.repositories.PessoaRepository;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -15,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Transactional(propagation = Propagation.REQUIRED)
 public class PessoaService extends ServiceCrud<PessoaDTO>{
 
     @Autowired
@@ -42,6 +40,6 @@ public class PessoaService extends ServiceCrud<PessoaDTO>{
 
     @Override
     public void excluirPorId(Long id) {
-
+        System.out.println("oi");
     }
 }

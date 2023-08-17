@@ -29,7 +29,6 @@ public class Pessoa {
     private Instant date;
 
     @NotBlank
-    @CPF
     private String cpf;
 
     @NotNull
