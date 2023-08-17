@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public class MotoristaService extends ServiceCrud<MotoristaDTO>{
+public class MotoristaService extends ServiceCrud<MotoristaDTO> {
 
     @Autowired
     private MotoristaRepository motoristaRepository;
@@ -31,8 +31,9 @@ public class MotoristaService extends ServiceCrud<MotoristaDTO>{
     }
 
     @Override
-    public List<MotoristaDTO> listAll() {
-        return null;
+    public List<MotoristaDTO> findAll() {
+        List<Motorista> colaboradores = this.motoristaRepository.findAll();
+        return colaboradores.stream().map(this.motoristaMapper::modelToDTO).toList();
     }
 
     @Override

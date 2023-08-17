@@ -29,7 +29,7 @@ public class PessoaService extends ServiceCrud<PessoaDTO>{
     }
 
     @Override
-    public List<PessoaDTO> listAll() {
+    public List<PessoaDTO> findAll() {
         return null;
     }
 

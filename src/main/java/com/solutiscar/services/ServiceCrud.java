@@ -6,7 +6,7 @@ public abstract class ServiceCrud<T> {
 
     public abstract T findById(Long id);
 
-    public abstract List<T> listAll();
+    public abstract List<T> findAll();
 
     public abstract T insert(T obj);
 
