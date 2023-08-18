@@ -2,13 +2,11 @@ package com.solutiscar.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import com.solutiscar.model.entities.enums.Sexo;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,5 +23,4 @@ public class Motorista extends Pessoa {
     @JsonIgnore
     @OneToMany(mappedBy = "motorista")
     private List<Aluguel> alugueis = new ArrayList<>();
-
 }

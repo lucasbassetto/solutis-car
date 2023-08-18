@@ -1,7 +1,6 @@
 package com.solutiscar.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.solutiscar.model.entities.enums.Categoria;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
