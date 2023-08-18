@@ -1,0 +1,1 @@
+INSERT INTO tb_fabricante (nome) VALUES ('FERRARI');
