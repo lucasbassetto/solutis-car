@@ -1,5 +1,6 @@
 package com.solutiscar.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class ApoliceSeguro {
 
     private boolean protecaoRoubo = false;
 
+//    @JsonIgnore
     @OneToOne
     @MapsId
     private Aluguel aluguel;

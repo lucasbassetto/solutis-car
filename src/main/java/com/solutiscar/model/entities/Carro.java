@@ -12,8 +12,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.URL;
 
 import java.math.BigDecimal;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Data
 @Entity
@@ -50,5 +49,9 @@ public class Carro {
 
     @OneToMany
     @JoinColumn(name = "carro_id")
-    private List<Aluguel> aluguel;
+    private List<Aluguel> alugueis = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "tb_carro_acessorio", joinColumns = @JoinColumn(name = "carro_id"), inverseJoinColumns = @JoinColumn(name = "acessorio_id"))
+    private Set<Acessorio> acessorios = new HashSet<>();
 }

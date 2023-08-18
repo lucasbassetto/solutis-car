@@ -41,5 +41,4 @@ public class Aluguel {
 
     @OneToOne(mappedBy = "aluguel", cascade = CascadeType.ALL)
     private ApoliceSeguro apoliceSeguro;
-
 }
