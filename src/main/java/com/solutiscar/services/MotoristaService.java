@@ -1,7 +1,7 @@
 package com.solutiscar.services;
 
-import com.solutiscar.services.exception.DatabaseException;
-import com.solutiscar.services.exception.ResourceNotFoundException;
+import com.solutiscar.exception.DatabaseException;
+import com.solutiscar.exception.ResourceNotFoundException;
 import com.solutiscar.mapper.MotoristaMapper;
 import com.solutiscar.model.dto.MotoristaDTO;
 import com.solutiscar.model.entities.Motorista;

@@ -1,4 +1,4 @@
-package com.solutiscar.services.exception;
+package com.solutiscar.exception;
 
 public class DatabaseException extends RuntimeException {
 
