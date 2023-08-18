@@ -23,7 +23,6 @@ public class MotoristaService extends ServiceCrud<MotoristaDTO> {
     @Autowired
     private MotoristaMapper motoristaMapper;
 
-
     @Override
     public MotoristaDTO findById(Long id) {
         return this.motoristaMapper.modelToDTO(this.motoristaRepository.findById(id)
@@ -44,7 +43,6 @@ public class MotoristaService extends ServiceCrud<MotoristaDTO> {
 
     @Override
     public void deleteById(Long id) {
-
+        this.motoristaRepository.deleteById(id);
     }
-
 }

@@ -3,6 +3,8 @@ package com.solutiscar.model.entities;
 import com.solutiscar.model.entities.enums.Sexo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 import java.time.Instant;
 
@@ -10,7 +12,8 @@ import java.time.Instant;
 @Table(name = "tb_funcionario")
 public class Funcionario extends Pessoa {
 
-
+    @NotBlank
+    @Pattern(regexp = "\\d{5}")
     private String matricula;
 
     public Funcionario() {

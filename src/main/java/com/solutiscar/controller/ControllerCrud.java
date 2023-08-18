@@ -31,4 +31,10 @@ public abstract class ControllerCrud<T> {
     public ResponseEntity<T> insert(@RequestBody T obj) {
         return ResponseEntity.ok((T) service.insert(obj));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
