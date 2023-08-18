@@ -2,11 +2,15 @@ package com.solutiscar.services;
 
 
 import com.solutiscar.exception.DashNotFoundException;
+import com.solutiscar.exception.DatabaseException;
+import com.solutiscar.exception.ResourceNotFoundException;
 import com.solutiscar.mapper.MotoristaMapper;
 import com.solutiscar.model.dto.MotoristaDTO;
 import com.solutiscar.model.entities.Motorista;
 import com.solutiscar.repositories.MotoristaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,6 +47,13 @@ public class MotoristaService extends ServiceCrud<MotoristaDTO> {
 
     @Override
     public void deleteById(Long id) {
-        this.motoristaRepository.deleteById(id);
+        try {
+            this.motoristaRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+
     }
 }
