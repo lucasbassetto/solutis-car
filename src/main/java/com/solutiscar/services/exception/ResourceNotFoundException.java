@@ -1,4 +1,4 @@
-package com.solutiscar.exception;
+package com.solutiscar.services.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 

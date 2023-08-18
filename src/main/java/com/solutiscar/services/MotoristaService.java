@@ -1,9 +1,7 @@
 package com.solutiscar.services;
 
-
-import com.solutiscar.exception.DashNotFoundException;
-import com.solutiscar.exception.DatabaseException;
-import com.solutiscar.exception.ResourceNotFoundException;
+import com.solutiscar.services.exception.DatabaseException;
+import com.solutiscar.services.exception.ResourceNotFoundException;
 import com.solutiscar.mapper.MotoristaMapper;
 import com.solutiscar.model.dto.MotoristaDTO;
 import com.solutiscar.model.entities.Motorista;
@@ -30,7 +28,7 @@ public class MotoristaService extends ServiceCrud<MotoristaDTO> {
     @Override
     public MotoristaDTO findById(Long id) {
         return this.motoristaMapper.modelToDTO(this.motoristaRepository.findById(id)
-                .orElseThrow(DashNotFoundException::new));
+                .orElseThrow(() -> new ResourceNotFoundException(id)));
     }
 
     @Override
@@ -54,6 +52,5 @@ public class MotoristaService extends ServiceCrud<MotoristaDTO> {
         } catch (DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
-
     }
 }

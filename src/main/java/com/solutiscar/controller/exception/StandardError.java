@@ -1,4 +1,4 @@
-package com.solutiscar.services.exception;
+package com.solutiscar.controller.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

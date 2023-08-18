@@ -1,7 +1,7 @@
-package com.solutiscar.services.exception;
+package com.solutiscar.controller.exception;
 
-import com.solutiscar.exception.DatabaseException;
-import com.solutiscar.exception.ResourceNotFoundException;
+import com.solutiscar.services.exception.DatabaseException;
+import com.solutiscar.services.exception.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
