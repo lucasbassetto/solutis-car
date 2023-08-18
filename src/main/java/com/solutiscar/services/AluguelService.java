@@ -2,10 +2,10 @@ package com.solutiscar.services;
 
 import com.solutiscar.exception.DatabaseException;
 import com.solutiscar.exception.ResourceNotFoundException;
-import com.solutiscar.mapper.MotoristaMapper;
-import com.solutiscar.model.dto.MotoristaDTO;
-import com.solutiscar.model.entities.Motorista;
-import com.solutiscar.repositories.MotoristaRepository;
+import com.solutiscar.mapper.AluguelMapper;;
+import com.solutiscar.model.dto.AluguelDTO;
+import com.solutiscar.model.entities.Aluguel;
+import com.solutiscar.repositories.AluguelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -17,36 +17,36 @@ import java.util.List;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public class MotoristaService extends ServiceCrud<MotoristaDTO> {
+public class AluguelService extends ServiceCrud<AluguelDTO> {
 
     @Autowired
-    private MotoristaRepository motoristaRepository;
+    private AluguelRepository aluguelRepository;
 
     @Autowired
-    private MotoristaMapper motoristaMapper;
+    private AluguelMapper aluguelMapper;
 
     @Override
-    public MotoristaDTO findById(Long id) {
-        return this.motoristaMapper.modelToDTO(this.motoristaRepository.findById(id)
+    public AluguelDTO findById(Long id) {
+        return this.aluguelMapper.modelToDTO(this.aluguelRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id)));
     }
 
     @Override
-    public List<MotoristaDTO> findAll() {
-        List<Motorista> list = this.motoristaRepository.findAll();
-        return list.stream().map(this.motoristaMapper::modelToDTO).toList();
+    public List<AluguelDTO> findAll() {
+        List<Aluguel> list = this.aluguelRepository.findAll();
+        return list.stream().map(this.aluguelMapper::modelToDTO).toList();
     }
 
     @Override
-    public MotoristaDTO insert(MotoristaDTO dto) {
-        Motorista motoristaInsert = motoristaRepository.save(this.motoristaMapper.dtoToModel(dto));
-        return this.motoristaMapper.modelToDTO(motoristaInsert);
+    public AluguelDTO insert(AluguelDTO dto) {
+        Aluguel aluguelInsert = aluguelRepository.save(this.aluguelMapper.dtoToModel(dto));
+        return this.aluguelMapper.modelToDTO(aluguelInsert);
     }
 
     @Override
     public void deleteById(Long id) {
         try {
-            this.motoristaRepository.deleteById(id);
+            this.aluguelRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
         } catch (DataIntegrityViolationException e) {

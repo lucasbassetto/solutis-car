@@ -1,9 +1,7 @@
 package com.solutiscar.mapper;
 
 import com.solutiscar.model.dto.MotoristaDTO;
-import com.solutiscar.model.dto.PessoaDTO;
 import com.solutiscar.model.entities.Motorista;
-import com.solutiscar.model.entities.Pessoa;
 import org.mapstruct.Mapper;
 
 @Mapper

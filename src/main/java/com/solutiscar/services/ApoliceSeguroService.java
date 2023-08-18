@@ -2,10 +2,10 @@ package com.solutiscar.services;
 
 import com.solutiscar.exception.DatabaseException;
 import com.solutiscar.exception.ResourceNotFoundException;
-import com.solutiscar.mapper.MotoristaMapper;
-import com.solutiscar.model.dto.MotoristaDTO;
-import com.solutiscar.model.entities.Motorista;
-import com.solutiscar.repositories.MotoristaRepository;
+import com.solutiscar.mapper.ApoliceSeguroMapper;
+import com.solutiscar.model.dto.ApoliceSeguroDTO;
+import com.solutiscar.model.entities.ApoliceSeguro;
+import com.solutiscar.repositories.ApoliceSeguroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -14,39 +14,38 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public class MotoristaService extends ServiceCrud<MotoristaDTO> {
+public class ApoliceSeguroService extends ServiceCrud<ApoliceSeguroDTO> {
 
     @Autowired
-    private MotoristaRepository motoristaRepository;
+    private ApoliceSeguroRepository apoliceSeguroRepository;
 
     @Autowired
-    private MotoristaMapper motoristaMapper;
+    private ApoliceSeguroMapper apoliceSeguroMapper;
 
     @Override
-    public MotoristaDTO findById(Long id) {
-        return this.motoristaMapper.modelToDTO(this.motoristaRepository.findById(id)
+    public ApoliceSeguroDTO findById(Long id) {
+        return this.apoliceSeguroMapper.modelToDTO(this.apoliceSeguroRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id)));
     }
 
     @Override
-    public List<MotoristaDTO> findAll() {
-        List<Motorista> list = this.motoristaRepository.findAll();
-        return list.stream().map(this.motoristaMapper::modelToDTO).toList();
+    public List<ApoliceSeguroDTO> findAll() {
+        List<ApoliceSeguro> list = this.apoliceSeguroRepository.findAll();
+        return list.stream().map(this.apoliceSeguroMapper::modelToDTO).toList();
     }
 
     @Override
-    public MotoristaDTO insert(MotoristaDTO dto) {
-        Motorista motoristaInsert = motoristaRepository.save(this.motoristaMapper.dtoToModel(dto));
-        return this.motoristaMapper.modelToDTO(motoristaInsert);
+    public ApoliceSeguroDTO insert(ApoliceSeguroDTO dto) {
+        ApoliceSeguro apoliceSeguroInsert = apoliceSeguroRepository.save(this.apoliceSeguroMapper.dtoToModel(dto));
+        return this.apoliceSeguroMapper.modelToDTO(apoliceSeguroInsert);
     }
 
     @Override
     public void deleteById(Long id) {
         try {
-            this.motoristaRepository.deleteById(id);
+            this.apoliceSeguroRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
         } catch (DataIntegrityViolationException e) {

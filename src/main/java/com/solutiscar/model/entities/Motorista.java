@@ -5,9 +5,12 @@ import com.solutiscar.model.entities.enums.Sexo;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 
 import java.time.Instant;
+import java.util.List;
 
+@Data
 @Entity
 @Table(name = "tb_motorista")
 public class Motorista extends Pessoa {
@@ -17,20 +20,8 @@ public class Motorista extends Pessoa {
     @Pattern(regexp = "[0-9]+")
     private String numeroCNH;
 
-    public Motorista() {
+    @OneToMany
+    @JoinColumn(name = "motorista_id")
+    private List<Aluguel> aluguel;
 
-    }
-
-    public Motorista(Long id, String nome, Instant date, String cpf, Sexo sexo, String numeroCNH) {
-        super(id, nome, date, cpf, sexo);
-        this.numeroCNH = numeroCNH;
-    }
-
-    public String getNumeroCNH() {
-        return numeroCNH;
-    }
-
-    public void setNumeroCNH(String numeroCNH) {
-        this.numeroCNH = numeroCNH;
-    }
 }

@@ -23,7 +23,6 @@ public abstract class Pessoa {
     private String nome;
 
     @NotNull
-    @PastOrPresent
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant date;
 
