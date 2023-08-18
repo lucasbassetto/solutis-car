@@ -47,11 +47,15 @@ public class Carro {
     @Column(nullable = false)
     private String imageUrl;
 
-    @OneToMany
-    @JoinColumn(name = "carro_id")
+    @JsonIgnore
+    @OneToMany(mappedBy = "carro")
     private List<Aluguel> alugueis = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "tb_carro_acessorio", joinColumns = @JoinColumn(name = "carro_id"), inverseJoinColumns = @JoinColumn(name = "acessorio_id"))
     private Set<Acessorio> acessorios = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "modelo_id")
+    private ModeloCarro modeloCarro;
 }

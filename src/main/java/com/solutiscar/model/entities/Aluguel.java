@@ -34,9 +34,11 @@ public class Aluguel {
     private BigDecimal valorTotal;
 
     @ManyToOne
+    @JoinColumn(name = "motorista_id")
     private Motorista motorista;
 
     @ManyToOne
+    @JoinColumn(name = "carro_id")
     private Carro carro;
 
     @OneToOne(mappedBy = "aluguel", cascade = CascadeType.ALL)

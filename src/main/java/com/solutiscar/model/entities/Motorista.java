@@ -22,9 +22,8 @@ public class Motorista extends Pessoa {
     @Pattern(regexp = "[0-9]+")
     private String numeroCNH;
 
-//    @JsonIgnore
-    @OneToMany
-    @JoinColumn(name = "motorista_id")
+    @JsonIgnore
+    @OneToMany(mappedBy = "motorista")
     private List<Aluguel> alugueis = new ArrayList<>();
 
 }
