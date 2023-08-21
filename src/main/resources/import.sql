@@ -1,1 +1,20 @@
-INSERT INTO tb_fabricante (nome) VALUES ('FERRARI');
+-- INSERT INTO tb_fabricante (nome) VALUES ('FERRARI');
+-- INSERT INTO tb_fabricante (nome) VALUES ('PEGOUT');
+-- INSERT INTO tb_fabricante (nome) VALUES ('RENAULT');
+-- INSERT INTO tb_fabricante (nome) VALUES ('JAGUAR');
+--
+-- INSERT INTO tb_modelo (descricao, categoria, fabricante_id) VALUES ('FERRARI F8 TURBO', 'ESPORTIVO', 1);
+-- INSERT INTO tb_modelo (descricao, categoria, fabricante_id) VALUES ('PEGOUT CASUAL', 'SEDAN_COMPACTO', 2);
+-- INSERT INTO tb_modelo (descricao, categoria, fabricante_id) VALUES ('CARRO RENAULT', 'SEDAN_COMPACTO', 3);
+--
+-- INSERT INTO tb_carro (placa, chassi, cor, image_url, modelo_id, valor_diaria) VALUES ('ABC1234', '22212', 'VERMELHO', 'https://example.com/car-image.jpg', 1, 1200);
+--
+-- INSERT INTO tb_acessorio (descricao) VALUES ('Airbag');
+-- INSERT INTO tb_carro_acessorio (acessorio_id, carro_id) VALUES (1, 1);
+--
+-- INSERT INTO tb_pessoa (nome, date, cpf, sexo) VALUES ('Rafael', '2000-02-12T15:32:11Z', '00000000000', 'MASCULINO');
+-- INSERT INTO tb_motorista (id, numeroCNH) VALUES (1, '12345678');
+--
+-- INSERT INTO tb_aluguel (data_pedido, data_entrega, data_devolucao, valor_total, motorista_id, carro_id) VALUES ('2023-02-12T15:32:11Z', '2023-03-12T15:32:11Z', '2023-04-12T15:32:11Z', 1200, 1, 1)
+--
+-- INSERT INTO tb_apolice_seguro (protecao_causas_naturais, protecao_roubo, protecao_terceiro, valor_franquia, aluguel_id) VALUES (false, false, true, 1200, 1);

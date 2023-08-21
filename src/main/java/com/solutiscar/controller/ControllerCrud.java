@@ -1,6 +1,8 @@
 package com.solutiscar.controller;
 
+import com.solutiscar.services.carro.CarroService;
 import com.solutiscar.services.ServiceCrud;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +16,6 @@ public abstract class ControllerCrud<T> {
     public ControllerCrud(ServiceCrud service) {
         this.service = service;
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<T> findById(@PathVariable Long id) {
