@@ -1,7 +1,6 @@
 package com.solutiscar.model.dto.aluguel;
 
 import com.solutiscar.model.entities.aluguel.Aluguel;
-import com.solutiscar.model.entities.pessoa.Motorista;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,5 +17,5 @@ public class CarrinhoDTO {
     @NotNull(message = "Driver is required")
     private Long motoristaId;
 
-    private List<Aluguel> alugueisId = new ArrayList<>();
+    private List<Long> alugueisId = new ArrayList<>();
 }
