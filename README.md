@@ -24,6 +24,11 @@ git clone https://github.com/lucasbassetto/solutis-car
 ./mvnw spring-boot:run
 ```
 
+# API DOCUMENTATION
+
+To access the documentation, check the port and make sure it's set to 8080
+- [Swagger](http://localhost:8080/swagger-ui/index.html)
+
 # Domain Model
 ![Domain Model](https://github.com/lucasbassetto/assets/blob/main/Solutis/diagrama_classe_locadora_veiculo.jpeg?raw=true)
 
