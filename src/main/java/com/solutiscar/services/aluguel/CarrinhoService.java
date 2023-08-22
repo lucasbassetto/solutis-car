@@ -5,6 +5,7 @@ import com.solutiscar.exception.DatabaseException;
 import com.solutiscar.exception.ResourceNotFoundException;
 import com.solutiscar.mapper.carrinho.CarrinhoMapper;
 import com.solutiscar.model.dto.aluguel.CarrinhoDTO;
+import com.solutiscar.model.entities.aluguel.Aluguel;
 import com.solutiscar.model.entities.aluguel.Carrinho;
 import com.solutiscar.model.entities.pessoa.Motorista;
 import com.solutiscar.repositories.aluguel.AluguelRepository;
@@ -70,6 +71,19 @@ public class CarrinhoService extends ServiceCrud<CarrinhoDTO> {
     public CarrinhoDTO update(CarrinhoDTO payload) {
         Carrinho carrinhoExistente = carrinhoRepository.findById(payload.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Carrinho não encontrado: " + payload.getId()));
+
+        Motorista motorista = motoristaRepository.findById(payload.getMotoristaId())
+                .orElseThrow(() -> new ResourceNotFoundException("Motorista não encontrado: " + payload.getMotoristaId()));
+
+        carrinhoExistente.setMotorista(motorista);
+
+        List<Long> alugueisId = payload.getAlugueisId();
+        if (alugueisId != null && !alugueisId.isEmpty()) {
+            List<Aluguel> alugueis = aluguelRepository.findAllById(alugueisId);
+            carrinhoExistente.setAlugueis(alugueis);
+        } else {
+            carrinhoExistente.getAlugueis().clear();
+        }
 
         Carrinho carrinhoAtualizado = carrinhoRepository.save(carrinhoExistente);
         return carrinhoMapper.modelToDTO(carrinhoAtualizado);
