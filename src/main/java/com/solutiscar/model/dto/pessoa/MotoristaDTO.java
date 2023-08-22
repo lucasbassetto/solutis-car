@@ -19,7 +19,7 @@ public class MotoristaDTO {
 
     @NotNull(message = "CNH is required")
     @NotBlank(message = "CNH is required")
-    @Size(max = 10, message = "CNH must be less than 10 characters long")
+    @Size(min = 10, max = 10, message = "CNH must be less than 10 characters long")
     @Size(max = 255, message = "CNH must be less than 255 characters long")
     @Pattern(regexp = "[0-9]+")
     private String numeroCNH;

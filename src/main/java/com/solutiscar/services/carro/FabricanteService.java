@@ -21,37 +21,50 @@ import java.util.List;
 public class FabricanteService extends ServiceCrud<FabricanteDTO> {
 
     @Autowired
-    private FabricanteRepository fabricanteReposiroy;
+    private FabricanteRepository fabricanteRepository;
 
     @Autowired
     private FabricanteMapper fabricanteMapper;
 
     @Override
     public FabricanteDTO findById(Long id) {
-        return this.fabricanteMapper.modelToDTO(this.fabricanteReposiroy.findById(id)
+        return this.fabricanteMapper.modelToDTO(this.fabricanteRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(id)));
     }
 
     @Override
     public List<FabricanteDTO> findAll() {
-        List<Fabricante> list = this.fabricanteReposiroy.findAll();
+        List<Fabricante> list = this.fabricanteRepository.findAll();
         return list.stream().map(this.fabricanteMapper::modelToDTO).toList();
     }
 
     @Override
     public FabricanteDTO insert(FabricanteDTO dto) {
-        Fabricante fabricanteInsert = fabricanteReposiroy.save(this.fabricanteMapper.dtoToModel(dto));
+        Fabricante fabricanteInsert = fabricanteRepository.save(this.fabricanteMapper.dtoToModel(dto));
         return this.fabricanteMapper.modelToDTO(fabricanteInsert);
     }
 
     @Override
     public void deleteById(Long id) {
         try {
-            this.fabricanteReposiroy.deleteById(id);
+            this.fabricanteRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
         } catch (DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
+    }
+
+    @Override
+    public FabricanteDTO update(FabricanteDTO payload) {
+
+        Fabricante fabricanteExistente = fabricanteRepository.findById(payload.getId())
+                .orElseThrow(() -> new RuntimeException("Fabricante não encontrado: " + payload.getId()));
+
+        fabricanteExistente.setNome(payload.getNome());
+
+        Fabricante fabricanteAtualizado = fabricanteRepository.save(fabricanteExistente);
+
+        return fabricanteMapper.modelToDTO(fabricanteAtualizado);
     }
 }

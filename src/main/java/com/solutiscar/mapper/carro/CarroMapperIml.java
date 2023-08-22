@@ -68,10 +68,16 @@ public class CarroMapperIml implements CarroMapper {
 
 
         if (dto.getModeloCarroId() != null) {
-            ModeloCarro modeloCarro = modeloCarroRepository.findById(dto.getModeloCarroId()).orElse(null);
+            ModeloCarro modeloCarro = modeloCarroRepository.findById(dto.getModeloCarroId())
+                    .orElseThrow(() -> new RuntimeException("Modelo de carro não encontrado: " + dto.getModeloCarroId()));
             carroEntity.setModeloCarro(modeloCarro);
         }
 
+//        if (dto.getModeloCarroId() != null) {
+//            ModeloCarro modeloCarro = modeloCarroRepository.findById(dto.getModeloCarroId()).orElse(null);
+//            carroEntity.setModeloCarro(modeloCarro);
+//        }
+//
         if (dto.getAcessorioId() != null) {
             List<Acessorio> acessorios = acessorioRepository.findAllById(dto.getAcessorioId());
             carroEntity.setAcessorios(new ArrayList<>(acessorios));

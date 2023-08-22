@@ -11,4 +11,6 @@ public abstract class ServiceCrud<T> {
     public abstract T insert(T obj);
 
     public abstract void deleteById(Long id);
+
+    public abstract T update(T payload);
 }

@@ -1,4 +1,4 @@
-package com.solutiscar.model.dto.carrinho;
+package com.solutiscar.model.dto.aluguel;
 
 import com.solutiscar.model.entities.aluguel.Aluguel;
 import com.solutiscar.model.entities.pessoa.Motorista;

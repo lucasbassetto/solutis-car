@@ -55,4 +55,17 @@ public class AcessorioService extends ServiceCrud<AcessorioDTO> {
             throw new DatabaseException(e.getMessage());
         }
     }
+
+    @Override
+    public AcessorioDTO update(AcessorioDTO payload) {
+        Acessorio acessorioExistente = acessorioRepository.findById(payload.getId())
+                .orElseThrow(() -> new RuntimeException("Acessorio não encontrado: " + payload.getId()));
+
+        acessorioExistente.setDescricao(payload.getDescricao());
+
+        Acessorio acessorioAtualizado = acessorioRepository.save(acessorioExistente);
+
+
+        return acessorioMapper.modelToDTO(acessorioAtualizado);
+    }
 }

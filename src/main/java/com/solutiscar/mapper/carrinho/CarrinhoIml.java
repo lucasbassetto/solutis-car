@@ -1,12 +1,10 @@
 package com.solutiscar.mapper.carrinho;
 
-import com.solutiscar.model.dto.carrinho.CarrinhoDTO;
-import com.solutiscar.model.entities.aluguel.Aluguel;
-import com.solutiscar.model.entities.carrinho.Carrinho;
-;import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import com.solutiscar.model.dto.aluguel.CarrinhoDTO;
+import com.solutiscar.model.entities.aluguel.Carrinho;
+import org.springframework.stereotype.Component;
+;
+@Component
 public class CarrinhoIml implements CarrinhoMapper {
 
 

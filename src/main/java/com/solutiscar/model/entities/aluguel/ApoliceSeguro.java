@@ -29,6 +29,5 @@ public class ApoliceSeguro {
 
     @JsonIgnore
     @OneToOne
-    @MapsId
     private Aluguel aluguel;
 }

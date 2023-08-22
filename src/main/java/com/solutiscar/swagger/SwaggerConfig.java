@@ -1,4 +1,4 @@
-package com.solutiscar.config;
+package com.solutiscar.swagger;
 
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.ApiInfoBuilder;

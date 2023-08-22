@@ -8,6 +8,7 @@ import com.solutiscar.model.dto.carro.ModeloCarroDTO;
 import com.solutiscar.model.dto.carro.ModeloCarroDTO;
 import com.solutiscar.model.entities.carro.Carro;
 import com.solutiscar.model.entities.carro.ModeloCarro;
+import com.solutiscar.model.entities.pessoa.Motorista;
 import com.solutiscar.repositories.carro.CarroRepository;
 import com.solutiscar.repositories.carro.ModeloCarroRepository;
 import com.solutiscar.services.ServiceCrud;
@@ -59,5 +60,18 @@ public class ModeloCarroService extends ServiceCrud<ModeloCarroDTO> {
         } catch (DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
+    }
+
+    @Override
+    public ModeloCarroDTO update(ModeloCarroDTO dto) {
+        ModeloCarro modeloExistente = modeloCarroRepository.findById(dto.getId())
+                .orElseThrow(() -> new RuntimeException("ModeloCarro não encontrado: " + dto.getId()));
+
+        modeloExistente.setCategoria(dto.getCategoria());
+        modeloExistente.setDescricao(dto.getDescricao());
+
+        ModeloCarro modeloAtualizado = modeloCarroRepository.save(modeloExistente);
+
+        return modeloCarroMapper.modelToDTO(modeloAtualizado);
     }
 }

@@ -4,8 +4,12 @@ import com.solutiscar.exception.DatabaseException;
 import com.solutiscar.exception.ResourceNotFoundException;
 import com.solutiscar.mapper.carro.CarroMapper;
 import com.solutiscar.model.dto.carro.CarroDTO;
+import com.solutiscar.model.entities.carro.Acessorio;
 import com.solutiscar.model.entities.carro.Carro;
+import com.solutiscar.model.entities.carro.ModeloCarro;
+import com.solutiscar.repositories.carro.AcessorioRepository;
 import com.solutiscar.repositories.carro.CarroRepository;
+import com.solutiscar.repositories.carro.ModeloCarroRepository;
 import com.solutiscar.services.ServiceCrud;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +19,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +30,12 @@ public class CarroService extends ServiceCrud<CarroDTO> {
 
     @Autowired
     private CarroRepository carroRepository;
+
+    @Autowired
+    private ModeloCarroRepository modeloCarroRepository;
+
+    @Autowired
+    private AcessorioRepository acessorioRepository;
 
     @Autowired
     private CarroMapper carroMapper;
@@ -55,5 +67,35 @@ public class CarroService extends ServiceCrud<CarroDTO> {
         } catch (DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
+    }
+
+    @Override
+    public CarroDTO update(CarroDTO dto) {
+        Carro carroExistente = carroRepository.findById(dto.getId())
+                .orElseThrow(() -> new RuntimeException("Carro não encontrado: " + dto.getId()));
+
+        carroExistente.setPlaca(dto.getPlaca());
+        carroExistente.setChassi(dto.getChassi());
+        carroExistente.setCor(dto.getCor());
+        carroExistente.setValorDiaria(dto.getValorDiaria());
+        carroExistente.setImageUrl(dto.getImageUrl());
+
+        List<Acessorio> novosAcessorios = acessorioRepository.findAllById(dto.getAcessorioId());
+        carroExistente.setAcessorios(novosAcessorios);
+
+        ModeloCarro modeloCarro = modeloCarroRepository.findById(dto.getModeloCarroId())
+                .orElseThrow(() -> new RuntimeException("Modelo de carro não encontrado: " + dto.getModeloCarroId()));
+        carroExistente.setModeloCarro(modeloCarro);
+
+        Carro carroAtualizado = carroRepository.save(carroExistente);
+
+        return carroMapper.modelToDTO(carroAtualizado);
+    }
+
+    public List<CarroDTO> findAvailableCarsByDateRange(LocalDate startDate, LocalDate endDate) {
+        List<Carro> availableCars = carroRepository.findAvailableCarsByDateRange(startDate, endDate);
+        return availableCars.stream()
+                .map(carroMapper::modelToDTO)
+                .collect(Collectors.toList());
     }
 }

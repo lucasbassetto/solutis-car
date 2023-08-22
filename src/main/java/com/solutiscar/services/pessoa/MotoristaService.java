@@ -45,6 +45,16 @@ public class MotoristaService extends ServiceCrud<MotoristaDTO> {
     }
 
     @Override
+    public MotoristaDTO update(MotoristaDTO dto) {
+        Motorista motoristaExistente = motoristaRepository.findById(dto.getId())
+                .orElseThrow(() -> new RuntimeException("Motorista não encontrado: " + dto.getId()));
+
+        Motorista motoristaAtualizado = motoristaRepository.save(motoristaExistente);
+
+        return motoristaMapper.modelToDTO(motoristaAtualizado);
+    }
+
+    @Override
     public void deleteById(Long id) {
         try {
             this.motoristaRepository.deleteById(id);
@@ -54,4 +64,5 @@ public class MotoristaService extends ServiceCrud<MotoristaDTO> {
             throw new DatabaseException(e.getMessage());
         }
     }
+
 }

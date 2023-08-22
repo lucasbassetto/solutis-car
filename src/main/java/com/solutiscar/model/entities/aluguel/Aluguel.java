@@ -1,7 +1,6 @@
 package com.solutiscar.model.entities.aluguel;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.solutiscar.model.entities.carrinho.Carrinho;
 import com.solutiscar.model.entities.carro.Carro;
 import com.solutiscar.model.entities.pessoa.Motorista;
 import jakarta.persistence.*;

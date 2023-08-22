@@ -43,6 +43,9 @@ public class Carro {
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
+    @Column(nullable = false)
+    private boolean alugado = false;
+
     @JsonIgnore
     @OneToMany(mappedBy = "carro")
     private List<Aluguel> alugueis = new ArrayList<>();

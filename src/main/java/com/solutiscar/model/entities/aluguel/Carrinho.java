@@ -1,4 +1,4 @@
-package com.solutiscar.model.entities.carrinho;
+package com.solutiscar.model.entities.aluguel;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.solutiscar.model.entities.aluguel.Aluguel;

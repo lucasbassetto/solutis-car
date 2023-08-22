@@ -2,9 +2,8 @@ package com.solutiscar.model.entities.pessoa;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.solutiscar.model.entities.aluguel.Aluguel;
-import com.solutiscar.model.entities.carrinho.Carrinho;
+import com.solutiscar.model.entities.aluguel.Carrinho;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
 import java.util.ArrayList;

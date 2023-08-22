@@ -5,6 +5,7 @@ import com.solutiscar.exception.ResourceNotFoundException;
 import com.solutiscar.mapper.aluguel.ApoliceSeguroMapper;
 import com.solutiscar.model.dto.aluguel.ApoliceSeguroDTO;
 import com.solutiscar.model.entities.aluguel.ApoliceSeguro;
+import com.solutiscar.model.entities.carro.ModeloCarro;
 import com.solutiscar.repositories.aluguel.ApoliceSeguroRepository;
 import com.solutiscar.services.ServiceCrud;
 import lombok.RequiredArgsConstructor;
@@ -55,5 +56,16 @@ public class ApoliceSeguroService extends ServiceCrud<ApoliceSeguroDTO> {
         } catch (DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
+    }
+    @Override
+    public ApoliceSeguroDTO update(ApoliceSeguroDTO dto) {
+        ApoliceSeguro apoliceExistente = apoliceSeguroRepository.findById(dto.getId())
+                .orElseThrow(() -> new RuntimeException("ApoliceSeguro não encontrado: " + dto.getId()));
+
+        apoliceExistente.setValorFranquia(dto.getValorFranquia());
+
+        ApoliceSeguro modeloAtualizado = apoliceSeguroRepository.save(apoliceExistente);
+
+        return apoliceSeguroMapper.modelToDTO(modeloAtualizado);
     }
 }

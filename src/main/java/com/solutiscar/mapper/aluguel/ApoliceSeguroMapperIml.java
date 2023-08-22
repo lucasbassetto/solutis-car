@@ -26,13 +26,16 @@ public class ApoliceSeguroMapperIml implements ApoliceSeguroMapper {
 
     @Override
     public ApoliceSeguro dtoToModel(ApoliceSeguroDTO dto) {
-        if ( dto == null ) {
+        if (dto == null) {
             return null;
         }
 
         ApoliceSeguro apoliceSeguroEntity = new ApoliceSeguro();
 
-        apoliceSeguroEntity.setId(dto.getId());
+        if (dto.getId() != null) {
+            apoliceSeguroEntity.setId(dto.getId().longValue());
+        }
+
         apoliceSeguroEntity.setValorFranquia(dto.getValorFranquia());
         apoliceSeguroEntity.setProtecaoTerceiro(dto.isProtecaoTerceiro());
         apoliceSeguroEntity.setProtecaoCausasNaturais(dto.isProtecaoCausasNaturais());

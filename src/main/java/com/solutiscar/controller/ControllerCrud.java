@@ -1,10 +1,13 @@
 package com.solutiscar.controller;
 
+import com.solutiscar.exception.ResourceNotFoundException;
+import com.solutiscar.model.dto.aluguel.ApoliceSeguroDTO;
 import com.solutiscar.services.carro.CarroService;
 import com.solutiscar.services.ServiceCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,13 +26,18 @@ public abstract class ControllerCrud<T> {
     }
 
     @GetMapping
-    public  ResponseEntity<List<T>> findAll() {
-        return ResponseEntity.ok( (List<T>) service.findAll());
+    public ResponseEntity<List<T>> findAll() {
+        return ResponseEntity.ok((List<T>) service.findAll());
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<T> insert(@RequestBody T obj) {
+        return ResponseEntity.ok((T) service.insert(obj));
+    }
+
+    @PutMapping
+    public ResponseEntity<T> update(@RequestBody T obj) {
         return ResponseEntity.ok((T) service.insert(obj));
     }
 
