@@ -26,7 +26,7 @@ git clone https://github.com/lucasbassetto/solutis-car
 
 # API DOCUMENTATION
 
-To access the documentation, check the port and make sure it's set to 8080
+To access the documentation, run the application, check the port and make sure it's set to 8080
 - [Swagger](http://localhost:8080/swagger-ui/index.html)
 
 # Domain Model
